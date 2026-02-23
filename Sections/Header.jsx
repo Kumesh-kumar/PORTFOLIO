@@ -43,7 +43,7 @@ const Header = () => {
                             className="text-2xl lg:text-3xl mb-6 text-slate-300"
                         >
                             Mern-Stack , React Developer
-                            Full-Stack React Developer
+
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}

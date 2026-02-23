@@ -32,7 +32,7 @@ const Header = () => {
                             className="text-4xl lg:text-5xl mb-4 text-white"
                         >
                             Hi, I'm{" "}
-                            <span className="bg-gradient-to-r from-blue-400 to-purple-300 bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                                 Kumesh Kumar
                             </span>
                         </motion.h1>
@@ -43,6 +43,7 @@ const Header = () => {
                             className="text-2xl lg:text-3xl mb-6 text-slate-300"
                         >
                             Mern-Stack , React Developer
+                            Full-Stack React Developer
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}

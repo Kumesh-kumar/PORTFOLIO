@@ -74,23 +74,8 @@ const Skills = () => {
                     ))}
                 </div>
 
-                {/* Additional highlights */}
-                {/* <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="mt-12 grid grid-cols-1  sm:grid-cols-2 gap-6 max-w-3xl mx-auto"
-                >
-                    <div className="text-center p-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl text-white">
-                        <div className="text-3xl mb-2">1+</div>
-                        <div className="text-blue-100">Years Experience</div>
-                    </div>
-                    <div className="text-center p-6 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl text-white">
-                        <div className="text-3xl mb-2">99.9%</div>
-                        <div className="text-purple-100">Uptime Achieved</div>
-                    </div>
 
-                </motion.div> */}
+
             </div>
         </section>
     )

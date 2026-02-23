@@ -60,6 +60,7 @@ const Experience = () => {
                                                 Aiifiox
                                             </span>
                                             <span className="text-sm">Jan 2025 - Jan 2026</span>
+                                            <span className="text-sm">April 2025 - Jan 2026</span>
                                         </div>
                                         <p className="text-slate-600">
                                             Mohali, Punjab, India

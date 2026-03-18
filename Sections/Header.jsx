@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Header = () => {
     return (
-        <section className="h-[400px] sm:h-screen flex items-center justify-center bg-[#020617] text-white px-6">
+        <section className="h-[400px] sm:h-[550px] flex items-center justify-center bg-[#020617] text-white px-6">
             <div className="text-center max-w-3xl">
 
                 <motion.h1

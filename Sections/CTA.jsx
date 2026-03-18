@@ -13,7 +13,7 @@ const CTA = () => {
                     transition={{ duration: 0.6 }}
                     className="text-3xl md:text-4xl font-bold"
                 >
-                    🚀 Let's Build Something Amazing Together
+                    Available for Immediate Joining | React Developer
                 </motion.h2>
 
                 {/* SUBTEXT */}
@@ -23,8 +23,8 @@ const CTA = () => {
                     transition={{ delay: 0.2 }}
                     className="text-gray-400 mt-4 text-lg"
                 >
-                    I’m currently looking for React / MERN Developer opportunities.
-                    If you have a project or job opportunity, feel free to reach out!
+                    I build fast, scalable, and user-friendly web applications using React and the MERN stack.
+                    Currently looking for opportunities where I can deliver real impact and grow as a developer.
                 </motion.p>
 
                 {/* BUTTONS */}

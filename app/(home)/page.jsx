@@ -2,6 +2,7 @@ import Footer from '@/components/Footer'
 import About from '@/Sections/About'
 import Achievements from '@/Sections/Achievements'
 import Contact from '@/Sections/Contact'
+import CTA from '@/Sections/CTA'
 import Education from '@/Sections/Education'
 import Experience from '@/Sections/Experience'
 import Header from '@/Sections/Header'
@@ -21,6 +22,7 @@ const HomePage = () => {
                 <Education />
                 <Skills />
                 <Projects />
+                <CTA />
                 <Experience />
                 <Achievements />
                 <Contact />

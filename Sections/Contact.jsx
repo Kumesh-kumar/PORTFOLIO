@@ -107,7 +107,7 @@ const Contact = () => {
                         className="text-center"
                     >
                         <a
-                            href="mailto:kumesh@example.com"
+                            href={`mailto:${process.env.NEXT_PUBLIC_EMAIL_ADDRESS}`}
                             className="inline-flex items-center gap-2 px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-lg transition-colors shadow-lg shadow-blue-500/30"
                         >
                             <Mail className="w-5 h-5" />

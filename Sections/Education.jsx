@@ -27,7 +27,7 @@ const Education = () => {
     ];
 
     return (
-        <section id="education" className="py-20 bg-slate-50" ref={ref}>
+        <section id="education" className="py-20 bg-[#020617] text-white" ref={ref}>
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -35,7 +35,7 @@ const Education = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-4xl lg:text-5xl mb-4 text-slate-900">Education</h2>
+                    <h2 className="text-4xl lg:text-5xl mb-4 ">Education</h2>
                     <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
                 </motion.div>
 

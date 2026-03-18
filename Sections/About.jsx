@@ -1,112 +1,81 @@
-"use client"
-import React, { useRef } from 'react'
-import { motion, useInView } from "framer-motion"
-import { Code2, Database, Layers, Users } from 'lucide-react';
-import Image from 'next/image';
+"use client";
+import { motion } from "framer-motion";
+
 const About = () => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
-    const highlights = [
-        {
-            icon: <Code2 className="w-6 h-6" />,
-            title: "Clean Code",
-            description: "Writing maintainable, scalable code following best practices"
-        },
-        {
-            icon: <Database className="w-6 h-6" />,
-            title: "Database Optimization",
-            description: "Expert in query optimization and schema design"
-        },
-        {
-            icon: <Layers className="w-6 h-6" />,
-            title: "Microservices",
-            description: "Building distributed systems with modern architecture"
-        },
-        {
-            icon: <Users className="w-6 h-6" />,
-            title: "Agile Development",
-            description: "Collaborative team player with Agile/Scrum experience"
-        }
-    ];
-
-
     return (
-        <section id='about' className="py-20 bg-slate-50 text-black" ref={ref}>
-            <div className="container mx-auto px-6" >
+        <section className="py-10 bg-[#020617] text-white px-6 md:px-10" id="about">
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+
+                {/* LEFT SIDE (TEXT) */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }
-                    }
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-12"
                 >
-                    <h2 className="text-4xl lg:text-5xl mb-4 text-slate-900">About Me</h2>
-                    <div className="w-20 h-1 bg-blue-500 mx-auto"></div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                        👨‍💻 About Me
+                    </h2>
+
+                    <p className="text-gray-400 leading-relaxed mb-4">
+                        I am a passionate React JS developer focused on building real-world,
+                        scalable web applications. I enjoy transforming ideas into
+                        functional and user-friendly interfaces.
+                    </p>
+
+                    <p className="text-gray-400 leading-relaxed mb-4">
+                        I have developed a complete web platform <span className="text-sky-400 font-semibold">Shikharpe</span>,
+                        which includes Admin and Seller dashboards, authentication system,
+                        and API integration.
+                    </p>
+
+                    <p className="text-gray-400 leading-relaxed">
+                        I am continuously learning and improving my skills to build modern,
+                        high-performance applications and contribute effectively to a team.
+                    </p>
+
+                    {/* BUTTON */}
+                    <div className="mt-6">
+                        <a
+                            href="/resume.pdf"
+                            download={true}
+                            className="inline-block bg-sky-400 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
+                        >
+                            📄 Download Resume
+                        </a>
+                    </div>
                 </motion.div>
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Left - Image */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -50 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-slate-200 rounded-2xl transform rotate-2"></div>
 
-                            <Image
-                                src={'/reactjs.jpeg'}
-                                alt='/react Image'
-                                width={900}
-                                height={500}
-                                className='relative rounded-2xl'
-                            />
-                        </div>
-                    </motion.div>
+                {/* RIGHT SIDE (CARDS) */}
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="grid grid-cols-2 gap-4"
+                >
+                    <div className="bg-[#1e293b] p-5 rounded-xl">
+                        <h3 className="text-sky-400 text-xl font-bold">4+</h3>
+                        <p className="text-gray-400 text-sm mt-2">Projects Built</p>
+                    </div>
 
-                    {/* Right - Content */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                    >
-                        <h3 className="text-3xl mb-6 text-slate-900">
-                            Passionate Full-Stack Developer
-                        </h3>
-                        <p className="text-slate-700 mb-4 leading-relaxed">
-                            I'm a passionate software engineer with experience building production-level web
-                            applications that serve thousands of users daily. My journey in software development
-                            has equipped me with a deep understanding of both frontend and backend technologies.
-                        </p>
-                        <p className="text-slate-700 mb-6 leading-relaxed">
-                            I specialize in creating robust, scalable applications using the MERN stack (MongoDB,
-                            Express, React, Node.js). My expertise extends to REST APIs, microservices
-                            architecture, database optimization, and implementing best practices in modern web
-                            development. I'm committed to writing clean, maintainable code and delivering
-                            exceptional user experiences.
-                        </p>
+                    <div className="bg-[#1e293b] p-5 rounded-xl">
+                        <h3 className="text-sky-400 text-xl font-bold">React</h3>
+                        <p className="text-gray-400 text-sm mt-2">Core Technology</p>
+                    </div>
 
-                        <div className="grid md:grid-cols-2 gap-4 mt-8">
-                            {highlights.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                                    className="flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm border border-slate-200"
-                                >
-                                    <div className="text-blue-500 mt-1">{item.icon}</div>
-                                    <div>
-                                        <h4 className="text-slate-900 mb-1">{item.title}</h4>
-                                        <p className="text-sm text-slate-600">{item.description}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
+                    <div className="bg-[#1e293b] p-5 rounded-xl">
+                        <h3 className="text-sky-400 text-xl font-bold">API</h3>
+                        <p className="text-gray-400 text-sm mt-2">Integration Skills</p>
+                    </div>
+
+                    <div className="bg-[#1e293b] p-5 rounded-xl">
+                        <h3 className="text-sky-400 text-xl font-bold">UI</h3>
+                        <p className="text-gray-400 text-sm mt-2">Modern Design</p>
+                    </div>
+                </motion.div>
+
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default About
+export default About;

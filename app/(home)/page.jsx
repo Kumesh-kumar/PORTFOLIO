@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import About from '@/Sections/About'
+import Achievements from '@/Sections/Achievements'
 import Contact from '@/Sections/Contact'
 import Education from '@/Sections/Education'
 import Experience from '@/Sections/Experience'
@@ -17,10 +18,11 @@ const HomePage = () => {
             <main className='mt-14'>
                 <Header />
                 <About />
-                <Experience />
+                <Education />
                 <Skills />
                 <Projects />
-                <Education />
+                <Experience />
+                <Achievements />
                 <Contact />
             </main>
             <Footer />

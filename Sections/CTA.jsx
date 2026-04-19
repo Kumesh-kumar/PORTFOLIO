@@ -1,67 +1,60 @@
 "use client";
 import { motion } from "framer-motion";
+import { Mail, Phone, Linkedin, Eye } from "lucide-react";
 
-const CTA = () => {
+const CTA = ({ profile }) => {
     return (
-        <section className="py-20 bg-gradient-to-br from-sky-500/10 to-blue-500/10 text-white px-6 md:px-16">
-            <div className="max-w-4xl mx-auto text-center">
-
-                {/* HEADING */}
-                <motion.h2
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="text-3xl md:text-4xl font-bold"
-                >
-                    Available for Immediate Joining | React Developer
-                </motion.h2>
-
-                {/* SUBTEXT */}
-                <motion.p
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-gray-400 mt-4 text-lg"
-                >
-                    I build fast, scalable, and user-friendly web applications using React and the MERN stack.
-                    Currently looking for opportunities where I can deliver real impact and grow as a developer.
-                </motion.p>
-
-                {/* BUTTONS */}
+        <section className="py-24 bg-[#020617] text-white px-6">
+            <div className="max-w-4xl mx-auto text-center space-y-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="flex flex-col md:flex-row justify-center gap-4 mt-8"
+                    className="space-y-6"
                 >
-                    {/* EMAIL BUTTON */}
-                    <a
-                        href={`mailto:${process.env.NEXT_PUBLIC_EMAIL_ADDRESS}`}
-                        className="bg-sky-400 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
-                    >
-                        📧 Hire Me
-                    </a>
+                    <h2 className="text-4xl md:text-5xl font-bold">
+                        Available for Immediate Joining | <span className="text-slate-400">React Developer</span>
+                    </h2>
 
-                    {/* CALL BUTTON */}
-                    <a
-                        href={`tel:${process.env.NEXT_PUBLIC_MOBILE_URL}`}
-                        className="border border-sky-400 px-6 py-3 rounded-xl hover:bg-sky-400 hover:text-black transition"
-                    >
-                        📱 Call Me
-                    </a>
-
-                    {/* LINKEDIN BUTTON */}
-                    <a
-                        href={`${process.env.NEXT_PUBLIC_LINKEDIN_URL}`}
-                        target="_blank"
-                        className="border border-sky-400 px-6 py-3 rounded-xl hover:bg-sky-400 hover:text-black transition"
-                    >
-                        💼 LinkedIn
-                    </a>
+                    <p className="text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed">
+                        I build fast, scalable, and user-friendly web applications using React and the MERN stack.
+                        Currently looking for opportunities where I can deliver real impact and grow as a developer.
+                    </p>
                 </motion.div>
 
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex flex-wrap justify-center gap-6"
+                >
+                    <a
+                        href={`mailto:${profile?.socialLinks?.email}`}
+                        className="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-3 transition-all shadow-lg shadow-[#0ea5e9]/20"
+                    >
+                        <Mail className="w-5 h-5" /> Hire Me
+                    </a>
+
+                    {profile?.contactInfo?.phone && (
+                        <a
+                            href={`tel:${profile.contactInfo.phone}`}
+                            className="bg-[#1e293b]/50 border border-white/5 text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-3 hover:bg-white/5 transition-all"
+                        >
+                            <Phone className="w-5 h-5 text-indigo-400" /> Call Me
+                        </a>
+                    )}
+
+                    {profile?.socialLinks?.linkedin && (
+                        <a
+                            href={profile.socialLinks.linkedin}
+                            target="_blank"
+                            className="bg-[#1e293b]/50 border border-white/5 text-slate-400 px-10 py-4 rounded-2xl font-bold flex items-center gap-3 hover:bg-white/5 hover:text-white transition-all"
+                        >
+                            <Linkedin className="w-5 h-5 text-red-400" /> LinkedIn
+                        </a>
+                    )}
+                </motion.div>
             </div>
-        </section >
+        </section>
     );
 };
 

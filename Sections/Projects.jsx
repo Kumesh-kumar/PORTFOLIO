@@ -1,58 +1,60 @@
 "use client";
 import { motion } from "framer-motion";
+import { Link as LinkIcon, Check } from "lucide-react";
 
-const projects = [
-    {
-        title: "Shikharpe",
-        desc: "B2B multi-vendor platform with admin & seller dashboards.",
-        features: ["JWT Auth", "Admin Panel", "Seller Dashboard", "API Integration"],
-        link: "https://www.shikharpe.com",
-        highlight: true,
-    },
-    {
-        title: "Video Streaming Platform",
-        desc: "Netflix-like app with TMDB API and Redux.",
-        features: ["API Integration", "Redux", "Lazy Loading", "Performance Optimization"],
-        // link: "#",
-    },
-    {
-        title: "Grocery Store App",
-        desc: "E-commerce UI with cart functionality.",
-        features: ["Product UI", "Cart System", "Responsive"],
-        link: "https://grocery-store-one-topaz.vercel.app/",
-    },
-    {
-        title: "To-Do App",
-        desc: "Task management app with React.",
-        features: ["Add/Delete Tasks", "State Management"],
-        link: "https://todolist-jet-three.vercel.app/",
-    },
-];
-
-const Projects = () => {
+const Projects = ({ projects }) => {
     return (
-        <section id="projects" className="py-20 bg-[#020617] text-white px-6 md:px-16">
-            <h2 className="text-3xl font-bold text-center mb-10">🚀 Projects</h2>
+        <section id="projects" className="py-24 bg-[#020617] text-white px-6">
+            <div className="max-w-6xl mx-auto">
+                <header className="text-center mb-16">
+                    <motion.h2 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="text-4xl font-bold mb-4 flex items-center justify-center gap-3"
+                    >
+                        🚀 Projects
+                    </motion.h2>
+                    <div className="w-16 h-1 bg-[#0ea5e9] mx-auto rounded-full" />
+                </header>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                {projects.map((p, i) => (
-                    <motion.div key={i} whileHover={{ scale: 1.05 }}
-                        className={`p-6 rounded-xl ${p.highlight ? "border border-sky-400" : "bg-[#1e293b]"}`}>
+                <div className="grid md:grid-cols-2 gap-8">
+                    {projects?.length > 0 ? projects.map((proj, i) => (
+                        <motion.div 
+                            key={proj._id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                            className={`p-10 rounded-3xl bg-[#1e293b]/40 border ${i === 0 ? 'border-[#0ea5e9]' : 'border-white/5'} transition-all hover:bg-[#1e293b]/60 relative group`}
+                        >
+                            <h3 className="text-2xl font-bold text-[#38bdf8] mb-4">{proj.title}</h3>
+                            <p className="text-slate-400 mb-6 leading-relaxed">
+                                {proj.description}
+                            </p>
 
-                        <h3 className="text-xl font-semibold text-sky-400">{p.title}</h3>
-                        <p className="text-gray-400 mt-2">{p.desc}</p>
+                            <ul className="space-y-3 mb-8">
+                                {proj.tags?.map((tag, idx) => (
+                                    <li key={idx} className="flex items-center gap-3 text-sm text-[#94a3b8]">
+                                        <Check className="w-4 h-4 text-[#6366f1]" /> {tag}
+                                    </li>
+                                ))}
+                            </ul>
 
-                        <ul className="text-gray-400 mt-3 text-sm space-y-1">
-                            {p.features.map((f, idx) => (
-                                <li key={idx}>✔ {f}</li>
-                            ))}
-                        </ul>
-
-                        {p.link && <a href={p.link} target="_blank" className="text-sky-400 mt-4 inline-block">
-                            🔗 Live
-                        </a>}
-                    </motion.div>
-                ))}
+                            <div className="pt-4">
+                                {proj.liveLink && (
+                                    <a 
+                                        href={proj.liveLink} 
+                                        target="_blank" 
+                                        className="inline-flex items-center gap-2 text-[#38bdf8] font-medium hover:underline text-sm"
+                                    >
+                                        <LinkIcon className="w-4 h-4" /> Live
+                                    </a>
+                                )}
+                            </div>
+                        </motion.div>
+                    )) : (
+                        <p className="text-gray-500 col-span-2 text-center py-20 italic">Projects are coming soon...</p>
+                    )}
+                </div>
             </div>
         </section>
     );

@@ -1,49 +1,48 @@
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, Instagram, Heart } from "lucide-react";
 
-const Footer = () => {
+const Footer = ({ profile }) => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
+        <footer className="bg-[#020617] text-slate-400 py-12 border-t border-white/5">
             <div className="container mx-auto px-6">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                     {/* Left - Name & Role */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-white mb-1">Kumesh Kumar</h3>
-                        <p className="text-sm">Full-Stack React Developer</p>
+                        <h3 className="text-white text-xl font-bold mb-1">{profile?.name || "Kumesh Kumar"}</h3>
+                        <p className="text-sm text-gray-500">{profile?.title || "Full-Stack Developer"}</p>
                     </div>
 
                     {/* Center - Social Links */}
                     <div className="flex items-center gap-4">
-
-                        <a
-                            href="https://linkedin.com/in/kumeshkumar"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-10 h-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"
-                            aria-label="LinkedIn"
-                        >
-                            <Linkedin className="w-5 h-5" />
-                        </a>
-                        <a
-                            href="mailto:kumeshk720@gmail.com"
-                            className="w-10 h-10 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-lg transition-colors"
-                            aria-label="Email"
-                        >
-                            <Mail className="w-5 h-5" />
-                        </a>
+                        {profile?.socialLinks?.linkedin && (
+                            <a href={profile.socialLinks.linkedin} target="_blank" className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-sky-500 text-white rounded-xl transition-all">
+                                <Linkedin className="w-5 h-5" />
+                            </a>
+                        )}
+                        {profile?.socialLinks?.github && (
+                            <a href={profile.socialLinks.github} target="_blank" className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-sky-500 text-white rounded-xl transition-all">
+                                <Github className="w-5 h-5" />
+                            </a>
+                        )}
+                        {profile?.socialLinks?.email && (
+                            <a href={`mailto:${profile.socialLinks.email}`} className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-sky-500 text-white rounded-xl transition-all">
+                                <Mail className="w-5 h-5" />
+                            </a>
+                        )}
                     </div>
 
                     {/* Right - Copyright */}
-                    {/* <div className="text-center md:text-right text-sm">
-                            <p className="flex items-center justify-center md:justify-end gap-1">
-                                Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> by Kumesh Kumar
-                            </p>
-                            <p className="mt-1">© {currentYear} All rights reserved.</p>
-                        </div> */}
+                    <div className="text-center md:text-right">
+                        <p className="flex items-center justify-center md:justify-end gap-1 text-sm bg-white/5 px-4 py-1 rounded-full border border-white/5">
+                            Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> by {profile?.name?.split(' ')[0] || "Me"}
+                        </p>
+                        <p className="mt-2 text-[10px] uppercase tracking-widest text-gray-600">© {currentYear} All rights reserved.</p>
+                    </div>
                 </div>
             </div>
         </footer>
     );
 }
-export default Footer
+
+export default Footer;

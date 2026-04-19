@@ -1,63 +1,60 @@
 "use client";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Briefcase, Check, Trophy } from 'lucide-react';
 
-const Experience = () => {
+const Experience = ({ experiences }) => {
     return (
-        <section className="py-20 bg-[#020617] text-white px-6 md:px-16">
-            <div className="max-w-5xl mx-auto">
+        <section className="py-24 bg-[#020617] text-white px-6" id="experience">
+            <div className="max-w-4xl mx-auto space-y-16">
+                <header className="text-center">
+                    <motion.h2 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="text-4xl font-bold flex items-center justify-center gap-4"
+                    >
+                        💼 Experience & Achievements
+                    </motion.h2>
+                </header>
 
-                {/* HEADING */}
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-                    💼 Experience & Achievements
-                </h2>
+                <div className="space-y-12">
+                    {experiences?.length > 0 ? experiences.map((exp, i) => (
+                        <motion.div 
+                            key={exp._id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            className="bg-[#1e293b]/30 p-10 rounded-3xl border border-white/5 space-y-8"
+                        >
+                            <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+                                <div>
+                                    <h3 className="text-2xl font-bold text-[#38bdf8]">{exp.role} <span className="text-slate-400 font-medium">— {exp.company}</span></h3>
+                                    <p className="text-slate-500 text-sm mt-2 font-medium">{exp.startDate} - {exp.current ? 'Present' : exp.endDate}</p>
+                                </div>
+                            </div>
 
-                {/* CARD */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="bg-white/5 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl shadow-lg"
-                >
+                            <ul className="space-y-4">
+                                {exp.description?.map((point, idx) => (
+                                    <li key={idx} className="flex gap-4 text-slate-300 leading-relaxed font-normal">
+                                        <Check className="w-5 h-5 text-[#6366f1] shrink-0 mt-1" />
+                                        <span>{point}</span>
+                                    </li>
+                                ))}
+                            </ul>
 
-                    {/* ROLE + COMPANY */}
-                    <h3 className="text-xl md:text-2xl font-semibold text-sky-400">
-                        React / MERN Developer — Aiinfox
-                    </h3>
-
-                    {/* DURATION */}
-                    <p className="text-gray-400 mt-1">
-                        Jan 2025 - Jan 2026
-                    </p>
-
-                    {/* WORK */}
-                    <ul className="mt-6 space-y-3 text-gray-300">
-                        <li>✔ Delivered the <span className="text-white font-semibold">Shikharpe platform</span> successfully within deadlines.</li>
-
-                        <li>✔ Built scalable UI using React.js with <span className="text-white font-semibold">40+ reusable components</span>.</li>
-
-                        <li>✔ Integrated APIs using Node.js & MongoDB for smooth full-stack functionality.</li>
-
-                        <li>✔ Improved performance and reduced response time by optimizing API calls.</li>
-
-                        <li>✔ Delivered <span className="text-white font-semibold">15+ features</span> without critical bugs.</li>
-                    </ul>
-
-                    {/* ACHIEVEMENT BLOCK */}
-                    <div className="mt-8 p-5 bg-gradient-to-r from-sky-500/10 to-blue-500/10 border border-sky-400/20 rounded-xl">
-
-                        <h4 className="text-lg font-semibold text-sky-300">
-                            🏆 Key Achievement
-                        </h4>
-
-                        <p className="text-gray-300 mt-2">
-                            Awarded <span className="text-white font-semibold">“Ownership Hero”</span> in October
-                            for taking full ownership and successfully delivering complex tasks in the Shikharpe project.
-                        </p>
-
-                    </div>
-
-                </motion.div>
-
+                            {/* Key Achievement section matching image 6 */}
+                            <div className="bg-[#1e293b]/50 border border-[#38bdf8]/10 p-6 rounded-2xl space-y-3">
+                                <div className="flex items-center gap-2 text-[#38bdf8] font-bold text-sm uppercase tracking-wider">
+                                    <Trophy className="w-5 h-5 text-amber-500" /> Key Achievement
+                                </div>
+                                <p className="text-slate-400 text-sm leading-relaxed">
+                                    {exp.keyAchievement || "Successfully delivered high-impact features and received recognition for ownership and technical contributions."}
+                                </p>
+                            </div>
+                        </motion.div>
+                    )) : (
+                        <p className="text-gray-500 text-center italic py-10">Experience details coming soon...</p>
+                    )}
+                </div>
             </div>
         </section>
     );

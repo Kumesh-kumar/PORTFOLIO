@@ -11,8 +11,10 @@ import connectDB from '@/lib/mongodb'
 import { Portfolio } from '@/models/Portfolio'
 import { Project } from '@/models/Project'
 import { Skill } from '@/models/Skill'
-import { Experience as ExperienceModel } from '@/models/Experience'
 import { Education as EducationModel } from '@/models/Education'
+import { Experience as ExperienceModel } from '@/models/Experience'
+
+export const dynamic = "force-dynamic";
 
 const HomePage = async () => {
     await connectDB();

@@ -2,6 +2,7 @@ import connectDB from "@/lib/mongodb";
 import { Portfolio } from "@/models/Portfolio";
 import { requireAuth } from "@/lib/auth";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 // GET public portfolio data
 export async function GET() {
@@ -28,6 +29,8 @@ export const PUT = requireAuth(async (req) => {
             portfolio = await Portfolio.create(updateData);
         }
         
+        
+        revalidatePath("/");
         return NextResponse.json(portfolio);
     } catch (error) {
         console.error("Portfolio update error:", error);

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Trash2, Loader2, Code2, Database, Layout, Hammer, Star, X } from "lucide-react";
+import { Plus, Trash2, Pencil, Loader2, Code2, Database, Layout, Hammer, Star, X } from "lucide-react";
 import { authFetch } from "@/services/adminApi";
 
 const CATEGORIES = ['Frontend', 'Backend', 'Database', 'Tools', 'Other'];
@@ -10,6 +10,7 @@ export default function SkillsAdmin() {
     const [skills, setSkills] = useState([]);
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
+    const [editingSkill, setEditingSkill] = useState(null);
     const [formData, setFormData] = useState({ name: "", category: "Frontend", level: 80 });
 
     useEffect(() => {
@@ -27,18 +28,37 @@ export default function SkillsAdmin() {
         }
     };
 
+    const handleOpenModal = (skill = null) => {
+        if (skill) {
+            setEditingSkill(skill);
+            setFormData({ name: skill.name, category: skill.category, level: skill.level });
+        } else {
+            setEditingSkill(null);
+            setFormData({ name: "", category: "Frontend", level: 80 });
+        }
+        setModalOpen(true);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await authFetch("/api/skills", {
-                method: "POST",
-                body: JSON.stringify(formData)
-            });
+            if (editingSkill) {
+                await authFetch(`/api/skills/${editingSkill._id}`, {
+                    method: "PUT",
+                    body: JSON.stringify(formData)
+                });
+            } else {
+                await authFetch("/api/skills", {
+                    method: "POST",
+                    body: JSON.stringify(formData)
+                });
+            }
             setModalOpen(false);
+            setEditingSkill(null);
             setFormData({ name: "", category: "Frontend", level: 80 });
             fetchSkills();
         } catch (err) {
-            alert("Failed to add skill");
+            alert(`Failed to ${editingSkill ? 'update' : 'add'} skill`);
         }
     };
 
@@ -62,7 +82,7 @@ export default function SkillsAdmin() {
                     <p className="text-gray-400">Manage your technical stack and proficiency.</p>
                 </div>
                 <button 
-                    onClick={() => setModalOpen(true)}
+                    onClick={() => handleOpenModal()}
                     className="bg-sky-500 hover:bg-sky-400 text-white px-6 py-2 rounded-xl font-bold flex items-center gap-2 transition-all"
                 >
                     <Plus className="w-4 h-4" /> Add Skill
@@ -98,12 +118,20 @@ export default function SkillsAdmin() {
                                                 />
                                             </div>
                                         </div>
-                                        <button 
-                                            onClick={() => handleDelete(skill._id)}
-                                            className="p-2 opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 transition-all"
-                                        >
-                                            <Trash2 className="w-4 h-4" />
-                                        </button>
+                                        <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
+                                            <button 
+                                                onClick={() => handleOpenModal(skill)}
+                                                className="p-2 text-gray-500 hover:text-sky-400"
+                                            >
+                                                <Pencil className="w-4 h-4" />
+                                            </button>
+                                            <button 
+                                                onClick={() => handleDelete(skill._id)}
+                                                className="p-2 text-gray-500 hover:text-red-400"
+                                            >
+                                                <Trash2 className="w-4 h-4" />
+                                            </button>
+                                        </div>
                                     </div>
                                 )) : <p className="text-xs text-gray-500 italic">No skills in this category</p>}
                             </div>
@@ -128,7 +156,7 @@ export default function SkillsAdmin() {
                             className="relative w-full max-w-md bg-[#1e293b] border border-white/10 rounded-3xl p-8 shadow-2xl"
                         >
                             <div className="flex justify-between items-center mb-6">
-                                <h2 className="text-xl font-bold">Add New Skill</h2>
+                                <h2 className="text-xl font-bold">{editingSkill ? 'Edit' : 'Add New'} Skill</h2>
                                 <button onClick={() => setModalOpen(false)}><X className="w-5 h-5" /></button>
                             </div>
 
@@ -165,7 +193,7 @@ export default function SkillsAdmin() {
                                     type="submit"
                                     className="w-full py-3 bg-sky-500 hover:bg-sky-400 rounded-xl font-bold transition-all shadow-lg shadow-sky-500/20"
                                 >
-                                    Add Skill
+                                    {editingSkill ? 'Update' : 'Add'} Skill
                                 </button>
                             </form>
                         </motion.div>
